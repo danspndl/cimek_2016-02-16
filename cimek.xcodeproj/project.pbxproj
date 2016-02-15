@@ -25,6 +25,7 @@
 /* Begin PBXFileReference section */
 		BEDFA4961C72351D00FD59E5 /* cimek */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cimek; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEDFA4991C72351D00FD59E5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		BEDFA4A11C723B3300FD59E5 /* ip.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ip.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				BEDFA4991C72351D00FD59E5 /* main.cpp */,
+				BEDFA4A11C723B3300FD59E5 /* ip.txt */,
 			);
 			path = cimek;
 			sourceTree = "<group>";
