@@ -239,6 +239,7 @@
 				BEDFA49F1C72351D00FD59E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

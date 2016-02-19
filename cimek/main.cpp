@@ -17,8 +17,6 @@
 
 
 
-
-
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -115,39 +113,26 @@ void t4(){
 
 void t5(){
     ofstream fileOutput("sok.txt");
-    int zeros=0;
-
     // Iterate through 'ip' array
     for (int c=0; c<ipSize; c++) {
-        string loopTemp=ip[c];
-        string charTemp="";
-        int intTemp;
+        int zeros=0; // Initiating 'zero' counter
+        string loopTemp=ip[c]; // Get array's current element
+        string charTemp=""; // Initiating var for a char
 
         // Iterate through string
         // A string is 39 characters long
         for (int i=0;i<39;i++){
-            charTemp=loopTemp[i];
-            intTemp=atoi(charTemp);
-            if(intTemp=0){
-                zeros++;
+            charTemp=loopTemp[i]; // charTemp equals to a char
+            if(charTemp=="0"){
+                zeros++; // Counting zeros in a item
             }
         } // End iterate through string
-
+        
+        // If there are more than 18 zeros in the string, print it
         if(zeros>=18){
-            cout<<"result: "<<ip[c]<<endl;
-            // fileOutput<<ip[c];
+            fileOutput<<c<<" "<<ip[c];
         }
     } // End iterate through 'ip' array
-
-
-
-//string x = "hello world";
-//char *y = new char[x.length() + 1]; // or char y[100];
-
-//strcpy(y, x.c_str());
-//delete[] y;
-
-
 
 }
 
@@ -180,7 +165,7 @@ int main() {
     cout<<endl;
     t4();
     cout<<endl;
-    // t5();
+    t5();
     t6();
     t7();
 
