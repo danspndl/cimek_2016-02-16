@@ -22,6 +22,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -61,9 +62,92 @@ void t3(){
 
 void t4(){
 
+    // 2001:0db8*; dokumentacios
+    // 2001:0e*; globalis
+    // fc*, fd*; helyi
+
+    int dokumentacios=0, globalis=0, helyi=0;
+    string dokumentaciosCond="2001:0db8";
+    string globalisCond="2001:0e";
+    string helyiCond1="fc";
+    string helyiCond2="fd";
+
+    string temp="";
+
+
+    // dokumentacios
+    for (int c=0; c<ipSize; c++) {
+        // Iterate through 'ip' array and check the temp value with the condition
+        temp=ip[c].substr(0,9);
+        // cout<<"temp "<<temp<<endl;
+        if(temp==dokumentaciosCond){
+            dokumentacios++;
+        }
+    }
+
+
+    // globalis
+    for (int c=0; c<ipSize; c++) {
+        // Iterate through 'ip' array and check the temp value with the condition
+        temp=ip[c].substr(0,7);
+        // cout<<"temp "<<temp<<endl;
+        if(temp==globalisCond){
+            globalis++;
+        }
+    }
+
+    // helyi
+    for (int c=0; c<ipSize; c++) {
+        // Iterate through 'ip' array and check the temp value with the condition
+        temp=ip[c].substr(0,2);
+        // cout<<"temp "<<temp<<endl;
+        if(temp==helyiCond1 || temp==helyiCond2){
+            helyi++;
+        }
+    }
+
+
+    cout<<"4. feladat:"<<endl;
+    cout<<"Dokumentacios cim: "<<dokumentacios<<" darab"<<endl;
+    cout<<"Globalis egyedi cim: "<<globalis<<" darab"<<endl;
+    cout<<"Helyi egyedi cim: "<<helyi<<" darab"<<endl;
 }
 
 void t5(){
+    ofstream fileOutput("sok.txt");
+    int zeros=0;
+
+    // Iterate through 'ip' array
+    for (int c=0; c<ipSize; c++) {
+        string loopTemp=ip[c];
+        string charTemp="";
+        int intTemp;
+
+        // Iterate through string
+        // A string is 39 characters long
+        for (int i=0;i<39;i++){
+            charTemp=loopTemp[i];
+            intTemp=atoi(charTemp);
+            if(intTemp=0){
+                zeros++;
+            }
+        } // End iterate through string
+
+        if(zeros>=18){
+            cout<<"result: "<<ip[c]<<endl;
+            // fileOutput<<ip[c];
+        }
+    } // End iterate through 'ip' array
+
+
+
+//string x = "hello world";
+//char *y = new char[x.length() + 1]; // or char y[100];
+
+//strcpy(y, x.c_str());
+//delete[] y;
+
+
 
 }
 
@@ -91,9 +175,12 @@ int main() {
     // t1
     // printIP();
     t2();
+    cout<<endl;
     t3();
+    cout<<endl;
     t4();
-    t5();
+    cout<<endl;
+    // t5();
     t6();
     t7();
 
