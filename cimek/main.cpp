@@ -45,7 +45,7 @@ void t2(){
             sum++;
         }
     }
-    
+    ipSize=sum;
     cout<<"2. feladat: "<<sum<<endl;
 }
 
@@ -60,19 +60,19 @@ void t3(){
 }
 
 void t4(){
-    
+
 }
 
 void t5(){
-    
+
 }
 
 void t6(){
-    
+
 }
 
 void t7(){
-    
+
 }
 
 // ========================================
@@ -80,7 +80,7 @@ void t7(){
 // ========================================
 
 int main() {
-    
+
     // Get input from file
     int i=0;
     while(!fileInput.eof()) {
@@ -88,15 +88,15 @@ int main() {
         i++;
     }
 
+    // t1
     // printIP();
-    
     t2();
     t3();
     t4();
     t5();
     t6();
     t7();
-    
+
     fileInput.close();
     return 0;
 }
