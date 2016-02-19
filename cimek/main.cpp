@@ -134,10 +134,62 @@ void t5(){
         }
     } // End iterate through 'ip' array
 
+    cout<<"5. feladat... Kesz."<<endl;
 }
 
 void t6(){
-
+    int inputValue=0;
+    
+    cout<<"6. feladat"<<endl;
+    cout<<"Enter a number: ";
+//    cin>>inputValue;
+    inputValue=0;
+    
+    string workingValue=ip[inputValue];
+    string tempValue="";
+    
+    string slicedIp[8];
+    
+    // Get positions of semicolons in the string
+    int semicolonPos[7];
+    for (int i=0; i<7; i++) {
+        if (i!=0) {
+            semicolonPos[i]=workingValue.find(":",semicolonPos[i-1]+1);
+        }else{
+            semicolonPos[i]=workingValue.find(":");
+        }
+    }
+    
+    // Slice up the string into small strings
+    int semiCount=0;
+    slicedIp[0]=workingValue.substr(0,4);
+    for (int i=1; i<8; i++) { // Going through the whole string
+        slicedIp[i]=workingValue.substr(semicolonPos[semiCount]+1,4);
+        semiCount++;
+    }
+    
+    // Counting zeros
+    for (int i=0; i<8; i++) {
+        int zeros=0;
+        for (int c=0; c<4; c++) {
+            string tempString=slicedIp[i];
+            char charTemp=tempString[c];
+            if(charTemp==0){
+                zeros++;
+            }
+        }
+        
+        if (zeros>1) {
+            
+        }
+    }
+    
+    // Iterate through string
+    // A string is 4 characters long in 'slicedIp'
+   // for (int i=0; i<4; i++) {
+    //    tempValue=workingValue[i];
+    //}
+    
 }
 
 void t7(){
@@ -166,6 +218,7 @@ int main() {
     t4();
     cout<<endl;
     t5();
+    cout<<endl;
     t6();
     t7();
 
