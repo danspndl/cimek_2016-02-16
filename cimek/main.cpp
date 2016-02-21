@@ -142,17 +142,19 @@ void t6(){
     
     cout<<"6. feladat"<<endl;
     cout<<"Enter a number: ";
-//    cin>>inputValue;
+    cin>>inputValue;
     inputValue=0;
     
-    string workingValue=ip[inputValue];
+    string workingValue=ip[inputValue]; // Assigning the input vlaue tot the 'workingValue' string
+//    workingValue="2001:0db8:03cd:0000:0000:ef45:0006:0123";   // Debug
     string tempValue="";
     
-    string slicedIp[8];
+    string slicedIp[8]; // Initiating array for the parts of the string
     
     // Get positions of semicolons in the string
-    int semicolonPos[7];
+    long int semicolonPos[7];   // Why does it need long int?
     for (int i=0; i<7; i++) {
+        // It finds the first semicolon and moves onto the next one.
         if (i!=0) {
             semicolonPos[i]=workingValue.find(":",semicolonPos[i-1]+1);
         }else{
@@ -161,34 +163,44 @@ void t6(){
     }
     
     // Slice up the string into small strings
-    int semiCount=0;
-    slicedIp[0]=workingValue.substr(0,4);
-    for (int i=1; i<8; i++) { // Going through the whole string
-        slicedIp[i]=workingValue.substr(semicolonPos[semiCount]+1,4);
-        semiCount++;
+    int semiCount=0;    // semicolon counter
+    
+    slicedIp[0]=workingValue.substr(0,4);   // I don't know what this is...
+    for (int i=1; i<8; i++) {   // Going through the whole string
+        slicedIp[i]=workingValue.substr(semicolonPos[semiCount]+1,4);   // Slicing up the string at the semicolons
+        semiCount++;    // Increasing semicolon counter
     }
     
-    // Counting zeros
+    // Iterating through the whole array and checking checking zeros and removing them from the beginning
     for (int i=0; i<8; i++) {
-        int zeros=0;
-        for (int c=0; c<4; c++) {
-            string tempString=slicedIp[i];
-            char charTemp=tempString[c];
-            if(charTemp==0){
-                zeros++;
-            }
-        }
+        string tempString=slicedIp[i];  // Initiating the string that it works with
+        char tempChar[4]={tempString[0],tempString[1],tempString[2],tempString[3]}; // Making an array from the string's characters
+        char cond='0';  // This is the condition aka zero #notetoself: ' means character, " means string
         
-        if (zeros>1) {
-            
+        // Checking the zeros
+        if (tempChar[0]==cond && tempChar[1]!=cond) {   // Only the first is zero
+            slicedIp[i]=slicedIp[i].substr(1,3);
+        } else if(tempChar[0]==cond && tempChar[1]==cond && tempChar[2]!=cond){    // First and second is a zero
+            slicedIp[i]=slicedIp[i].substr(2,2);
+        } else if(tempChar[0]==cond && tempChar[1]==cond && tempChar[2]==cond && tempChar[3]!=cond){  // Only the last one is not a zero
+            slicedIp[i]=slicedIp[i].substr(3,1);
+        } else if(tempString=="0000"){  // Whole string 0
+            slicedIp[i]="0";
         }
     }
     
-    // Iterate through string
-    // A string is 4 characters long in 'slicedIp'
-   // for (int i=0; i<4; i++) {
-    //    tempValue=workingValue[i];
-    //}
+    
+    // Print result
+    for (int i=0; i<8; i++) {
+        if(i!=7){
+            cout<<slicedIp[i]<<":";
+        } else{
+            cout<<slicedIp[i]<<endl;
+        }
+    }
+
+    // Print original
+    cout<<workingValue<<" original"<<endl;
     
 }
 
