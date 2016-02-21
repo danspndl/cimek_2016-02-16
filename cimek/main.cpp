@@ -28,6 +28,7 @@ ifstream fileInput("ip.txt");
 string ip[500];
 int ipSize = sizeof(ip)/sizeof(ip[0]);
 
+string slicedIp[8]; // Initiating array for the parts of the string     // First appears in t6()
 
 
 void printIP(){
@@ -143,32 +144,38 @@ void t6(){
     cout<<"6. feladat"<<endl;
     cout<<"Enter a number: ";
     cin>>inputValue;
-    inputValue=0;
+//    inputValue=0; // Debug
+    
+    
+    // ====================
+    // Work on this condition
+    // ====================
+//    if (inputValue>0) {
+//        inputValue-=1;  // Reduce inputValue by one to get the programming sequence number
+//    }
     
     string workingValue=ip[inputValue]; // Assigning the input vlaue tot the 'workingValue' string
 //    workingValue="2001:0db8:03cd:0000:0000:ef45:0006:0123";   // Debug
     string tempValue="";
     
-    string slicedIp[8]; // Initiating array for the parts of the string
-    
-    // Get positions of semicolons in the string
-    long int semicolonPos[7];   // Why does it need long int?
+    // Get positions of colons in the string
+    long int colonPos[7];   // Why does it need long int?
     for (int i=0; i<7; i++) {
-        // It finds the first semicolon and moves onto the next one.
+        // It finds the first colon and moves onto the next one.
         if (i!=0) {
-            semicolonPos[i]=workingValue.find(":",semicolonPos[i-1]+1);
+            colonPos[i]=workingValue.find(":",colonPos[i-1]+1);
         }else{
-            semicolonPos[i]=workingValue.find(":");
+            colonPos[i]=workingValue.find(":");
         }
     }
     
     // Slice up the string into small strings
-    int semiCount=0;    // semicolon counter
+    int colonCount=0;    // colon counter
     
     slicedIp[0]=workingValue.substr(0,4);   // I don't know what this is...
     for (int i=1; i<8; i++) {   // Going through the whole string
-        slicedIp[i]=workingValue.substr(semicolonPos[semiCount]+1,4);   // Slicing up the string at the semicolons
-        semiCount++;    // Increasing semicolon counter
+        slicedIp[i]=workingValue.substr(colonPos[colonCount]+1,4);   // Slicing up the string at the colons
+        colonCount++;    // Increasing colon counter
     }
     
     // Iterating through the whole array and checking checking zeros and removing them from the beginning
@@ -190,6 +197,9 @@ void t6(){
     }
     
     
+    // Print original
+    cout<<workingValue<<endl;
+    
     // Print result
     for (int i=0; i<8; i++) {
         if(i!=7){
@@ -198,14 +208,33 @@ void t6(){
             cout<<slicedIp[i]<<endl;
         }
     }
-
-    // Print original
-    cout<<workingValue<<" original"<<endl;
     
 }
 
 void t7(){
-
+    // slicedIp[8] array is available
+    
+    for (int i=0; i<8; i++) {   // This still prints out the colon  // TODO: Edit the output to skip one of the three ':' periods
+        if (slicedIp[i]=="0" && slicedIp[i+1]=="0") {
+            slicedIp[i]="";
+            slicedIp[i+1]="";
+        }
+        
+        
+        
+        
+        
+    }
+    
+    cout<<"7. feladat"<<endl;
+    // Print result
+    for (int i=0; i<8; i++) {
+        if(i!=7){
+            cout<<slicedIp[i]<<":";
+        } else{
+            cout<<slicedIp[i]<<endl;
+        }
+    }
 }
 
 // ========================================
@@ -221,8 +250,7 @@ int main() {
         i++;
     }
 
-    // t1
-    // printIP();
+    // printIP();   // t1
     t2();
     cout<<endl;
     t3();
@@ -232,6 +260,7 @@ int main() {
     t5();
     cout<<endl;
     t6();
+    cout<<endl;
     t7();
 
     fileInput.close();
