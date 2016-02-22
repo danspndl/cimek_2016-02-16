@@ -136,6 +136,7 @@ void t5(){
     } // End iterate through 'ip' array
 
     cout<<"5. feladat... Kesz."<<endl;
+    fileOutput.close();
 }
 
 void t6(){
@@ -143,8 +144,8 @@ void t6(){
     
     cout<<"6. feladat"<<endl;
     cout<<"Enter a number: ";
-    cin>>inputValue;
-//    inputValue=0; // Debug
+    // cin>>inputValue;                     // DEBUG
+    inputValue=9;   // Debug
     
     
     // ====================
@@ -213,28 +214,40 @@ void t6(){
 
 void t7(){
     // slicedIp[8] array is available
+    string resultString="";
     
-    for (int i=0; i<8; i++) {   // This still prints out the colon  // TODO: Edit the output to skip one of the three ':' periods
-        if (slicedIp[i]=="0" && slicedIp[i+1]=="0") {
-            slicedIp[i]="";
-            slicedIp[i+1]="";
+    cout<<"Start..."<<endl;
+    for (int i=0; i<8; i++) {
+        cout<<slicedIp[i]<<":";
+    }
+    cout<<"End..."<<endl;
+    
+    
+    for (int i=0; i<8; i++) {   // Iterate through 'slicedIp' array
+        if (((slicedIp[i]=="0") && (slicedIp[i+1]=="0")) || ((slicedIp[i]=="0") && (slicedIp[i-1]=="0"))) { // If there are 2 zeros next to eachother
+            resultString+=":";
+        } else if(slicedIp[i]=="0" && slicedIp[i+1]=="0" && slicedIp[i+2]=="0"){    // If there are 3 zeros next to eachother
+            resultString+=":";
+        }else if(slicedIp[i]!="0" && slicedIp[i+1]=="0" && slicedIp[i+2]=="0"){   // Don't print colon after a string that wasn't zero
+            resultString+=slicedIp[i];
+        }else if(i==7){ // Last element, don't print colon, just the string
+            resultString+=slicedIp[i];
+        }else { // When there's no zero next to the element
+            resultString+=slicedIp[i];
+            resultString+=":";
         }
-        
-        
-        
-        
-        
     }
     
     cout<<"7. feladat"<<endl;
+    cout<<resultString<<endl;
     // Print result
-    for (int i=0; i<8; i++) {
-        if(i!=7){
-            cout<<slicedIp[i]<<":";
-        } else{
-            cout<<slicedIp[i]<<endl;
-        }
-    }
+//    for (int i=0; i<8; i++) {
+//        if(i!=7){
+//            cout<<slicedIp[i]<<":";
+//        } else{
+//            cout<<slicedIp[i]<<endl;
+//        }
+//    }
 }
 
 // ========================================
